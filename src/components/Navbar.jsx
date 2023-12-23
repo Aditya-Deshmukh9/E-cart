@@ -1,8 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { MdShoppingCart } from "react-icons/md";
 
 function Navbar() {
+  const [searchTerm, setsearchTerm] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search/${searchTerm}`);
+    setsearchTerm("");
+  };
+
   return (
     <>
       {/* Top Nav */}
@@ -13,17 +23,14 @@ function Navbar() {
         </Link>
 
         {/* Search Bar */}
-        <div className="relative">
-          <label className="sr-only" htmlFor="search">
-            {" "}
-            Search{" "}
-          </label>
-
+        <form onSubmit={handleSubmit} className="relative">
           <input
             className="h-8 w-full rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
             id="search"
             type="search"
             placeholder="Search website..."
+            value={searchTerm}
+            onChange={(e) => setsearchTerm(e.target.value)}
           />
 
           <button
@@ -33,11 +40,12 @@ function Navbar() {
             <span className="sr-only">Search</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-3 w-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth="2"
+              values="submit"
             >
               <path
                 strokeLinecap="round"
@@ -46,7 +54,7 @@ function Navbar() {
               />
             </svg>
           </button>
-        </div>
+        </form>
 
         {/* E-commerce Basket */}
         <Link to={"/cart"}>
