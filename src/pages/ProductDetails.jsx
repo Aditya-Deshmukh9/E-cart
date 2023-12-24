@@ -1,13 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import items from "../Utils/Items";
 import Products from "../components/Products";
 import CoursolProduct from "./CoursolProduct";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DataContext from "../context/DataContext";
 
 function ProductDetails() {
   const { id } = useParams();
   const [product, setproduct] = useState({});
   const [RelatedProduct, setRelatedProduct] = useState([]);
+
+  const context = useContext(DataContext);
+  // addToCart
+  const addToCart = (id, price, title, imgSrc) => {
+    const obj = {
+      id,
+      price,
+      title,
+      imgSrc,
+    };
+    context.setcart([...context.cart, obj]);
+    toast.success("Item added on cart", {
+      position: "top-right",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   useEffect(() => {
     const filterProduct = items.filter((e) => {
@@ -136,7 +161,10 @@ function ProductDetails() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4">
-                  <button className="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
+                  <button
+                    onClick={() => addToCart(id, price, title, imgSrc)}
+                    className="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700"
+                  >
                     Add to cart
                   </button>
                   <button className="flex items-center justify-center w-full p-4 text-blue-500 border border-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 dark:border-blue-600 hover:bg-blue-600 hover:border-blue-600 hover:text-gray-100 dark:bg-blue-500 dark:hover:bg-blue-700 dark:hover:border-blue-700 dark:hover:text-gray-300">

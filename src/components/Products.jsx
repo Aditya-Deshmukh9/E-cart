@@ -3,7 +3,7 @@ import Product from "../components/Product";
 
 function Products({ items }) {
   return (
-    <div className="h-full w-full grid grid-cols-3 px-20 mt-5">
+    <div className="min-h-screen w-full items-center grid grid-cols-1 px-10 mt-5 sm:grid-cols-3">
       {items.map((item, index) => (
         <Product key={index} {...item} />
       ))}

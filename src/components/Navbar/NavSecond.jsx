@@ -1,6 +1,10 @@
-import items from "../Utils/Items";
+import React, { useContext } from "react";
+import DataContext from "../../context/DataContext";
 
 function NavSecond({ setdata }) {
+  const context = useContext(DataContext);
+  const items = context.items;
+
   const filterByCategory = (category) => {
     console.log(category);
     const mobilesFilter = items.filter((e) => e.category === category);

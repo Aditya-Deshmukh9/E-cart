@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import DataContext from "../context/DataContext";
+import DataContext from "../../context/DataContext";
 
 function Navbar() {
   const [searchTerm, setsearchTerm] = useState("");

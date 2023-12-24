@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Products from "../components/Products";
 import items from "../Utils/Items";
-import NavSecond from "../components/NavSecond";
+import NavSecond from "../components/Navbar/NavSecond";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CoursolProduct from "./CoursolProduct";
