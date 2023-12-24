@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import SearchItem from "./pages/SearchItem";
 import { ToastContainer } from "react-toastify";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/search/:term" element={<SearchItem />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/auth/checkout" element={<Checkout />} />
       </Routes>
     </Router>
   );

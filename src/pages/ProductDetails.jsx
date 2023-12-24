@@ -13,13 +13,13 @@ function ProductDetails() {
   const [RelatedProduct, setRelatedProduct] = useState([]);
 
   const context = useContext(DataContext);
-  // addToCart
-  const addToCart = (id, price, title, imgSrc) => {
+  const addToCart = (id, price, title, imgSrc, amazonLink) => {
     const obj = {
       id,
       price,
       title,
       imgSrc,
+      amazonLink,
     };
     context.setcart([...context.cart, obj]);
     toast.success("Item added on cart", {
@@ -43,7 +43,7 @@ function ProductDetails() {
     setRelatedProduct(Related);
   }, [id, product.category]);
 
-  const { imgSrc, title, description, price } = product;
+  const { imgSrc, title, description, price, amazonLink } = product;
   return (
     <>
       <section className="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
@@ -162,7 +162,9 @@ function ProductDetails() {
 
                 <div className="flex flex-wrap items-center gap-4">
                   <button
-                    onClick={() => addToCart(id, price, title, imgSrc)}
+                    onClick={() =>
+                      addToCart(id, price, title, imgSrc, amazonLink)
+                    }
                     className="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700"
                   >
                     Add to cart

@@ -4,15 +4,16 @@ import DataContext from "../context/DataContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Product = ({ imgSrc, id, description, price, title }) => {
+const Product = ({ imgSrc, id, description, price, title, amazonLink }) => {
   const context = useContext(DataContext);
-  const addToCart = (id, price, title, description, imgSrc) => {
+  const addToCart = (id, price, title, description, imgSrc, amazonLink) => {
     const obj = {
       id,
       price,
       title,
       description,
       imgSrc,
+      amazonLink,
     };
     context.setcart([...context.cart, obj]);
     toast.success("Item added on cart", {
@@ -69,7 +70,9 @@ const Product = ({ imgSrc, id, description, price, title }) => {
               {price}
             </button>
             <button
-              onClick={() => addToCart(id, price, title, description, imgSrc)}
+              onClick={() =>
+                addToCart(id, price, title, description, imgSrc, amazonLink)
+              }
               className="block w-full rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
             >
               Buy Now

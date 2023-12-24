@@ -9,7 +9,7 @@ const items = [
     price: 89999,
   },
   {
-    id: 5,
+    id: 2,
     category: "laptops",
     title: "Xiaomi [Smartchoice] Notebookpro",
     imgSrc: "https://m.media-amazon.com/images/I/71TPda7cwUL._SL1500_.jpg",
@@ -18,7 +18,7 @@ const items = [
     price: 49999,
   },
   {
-    id: 7,
+    id: 3,
     category: "tablets",
     title: "Xiaomi Pad 6",
     imgSrc: "https://m.media-amazon.com/images/I/51b9LjzmPCL._SL1080_.jpg",
@@ -27,7 +27,7 @@ const items = [
     price: 29999,
   },
   {
-    id: 2,
+    id: 4,
     category: "mobiles",
     title: "Apple iPhone 11",
     imgSrc: "https://m.media-amazon.com/images/I/71xb2xkN5qL._SL1500_.jpg",
@@ -36,7 +36,7 @@ const items = [
     price: 79999,
   },
   {
-    id: 6,
+    id: 5,
     category: "tablets",
     title: "Lenovo Tab P12 Pro AMOLED",
     imgSrc: "https://m.media-amazon.com/images/I/51b9LjzmPCL._SL1080_.jpg",
@@ -46,7 +46,7 @@ const items = [
     price: 19999,
   },
   {
-    id: 3,
+    id: 6,
     category: "mobiles",
     title: "Apple iPhone 13",
     imgSrc: "https://m.media-amazon.com/images/I/71xb2xkN5qL._SL1500_.jpg",
@@ -55,7 +55,7 @@ const items = [
     price: 69999,
   },
   {
-    id: 4,
+    id: 7,
     category: "laptops",
     title: "Lenovo IdeaPad Slim 5 ",
     imgSrc: "https://m.media-amazon.com/images/I/71TPda7cwUL._SL1500_.jpg",
@@ -64,7 +64,7 @@ const items = [
     price: 29999,
   },
   {
-    id: 9,
+    id: 8,
     category: "tablets",
     title: "Samsung Galaxy Tab A8",
     imgSrc: "https://m.media-amazon.com/images/I/51b9LjzmPCL._SL1080_.jpg",
@@ -74,7 +74,7 @@ const items = [
     price: 49999,
   },
   {
-    id: 8,
+    id: 9,
     category: "laptops",
     title: "Apple MacBook Air Laptop",
     imgSrc: "https://m.media-amazon.com/images/I/71TPda7cwUL._SL1500_.jpg",
