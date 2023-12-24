@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { MdShoppingCart } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa";
+import DataContext from "../context/DataContext";
 
 function Navbar() {
   const [searchTerm, setsearchTerm] = useState("");
+  const context = useContext(DataContext);
 
   const navigate = useNavigate();
 
@@ -45,7 +48,6 @@ function Navbar() {
               viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth="2"
-              values="submit"
             >
               <path
                 strokeLinecap="round"
@@ -57,11 +59,15 @@ function Navbar() {
         </form>
 
         {/* E-commerce Basket */}
-        <Link to={"/cart"}>
-          <div className="flex items-center">
-            <MdShoppingCart className="h-7 w-7 text-white" />
-          </div>
-        </Link>
+        <div className="flex items-center gap-5 m-1 px-2">
+          <FaUser size={25} className=" text-white" />
+          <Link to={"/cart"} className=" text-white relative">
+            <FaShoppingCart size={25} className=" cursor-pointer" />
+            <div className=" absolute top-[-11px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
+              {context.cart.length}
+            </div>
+          </Link>
+        </div>
       </div>
     </>
   );

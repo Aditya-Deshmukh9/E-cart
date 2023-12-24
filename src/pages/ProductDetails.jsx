@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import items from "../Utils/Items";
 import Products from "../components/Products";
-import NewProductCard from "../components/NewProductCard";
-import Slider from "react-slick";
 import CoursolProduct from "./CoursolProduct";
 
 function ProductDetails() {

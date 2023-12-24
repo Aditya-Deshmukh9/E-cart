@@ -5,10 +5,23 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import SearchItem from "./pages/SearchItem";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
