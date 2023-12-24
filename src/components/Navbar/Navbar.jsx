@@ -21,7 +21,7 @@ function Navbar() {
       {/* Top Nav */}
       <div className="bg-indigo-950 flex flex-row justify-between px-4 py-2">
         {/* Logo */}
-        <Link to="/" className="text-white text-2xl font-bold">
+        <Link to="/" className="text-white text-xl font-bold sm:text-2xl">
           E-Cart
         </Link>
 
@@ -37,8 +37,9 @@ function Navbar() {
           />
 
           <button
-            type="button"
-            className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
+            type="submit"
+            className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-gray-50 p-2 text-gray-600 transition
+             hover:text-gray-700"
           >
             <span className="sr-only">Search</span>
             <svg
@@ -60,7 +61,7 @@ function Navbar() {
 
         {/* E-commerce Basket */}
         <div className="flex items-center gap-5 m-1 px-2">
-          <FaUser size={25} className=" text-white" />
+          <FaUser size={25} className="hidden text-white" />
           <Link to={"/cart"} className=" text-white relative">
             <FaShoppingCart size={25} className=" cursor-pointer" />
             <div className=" absolute top-[-11px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
