@@ -4,11 +4,11 @@ import DataContext from "../context/DataContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Product = ({ imgSrc, id, description, price, title, amazonLink }) => {
+const Product = ({ imgSrc, _id, description, price, title, amazonLink }) => {
   const context = useContext(DataContext);
-  const addToCart = (id, price, title, description, imgSrc, amazonLink) => {
+  const addToCart = (_id, price, title, description, imgSrc, amazonLink) => {
     const obj = {
-      id,
+      _id,
       price,
       title,
       description,
@@ -31,12 +31,12 @@ const Product = ({ imgSrc, id, description, price, title, amazonLink }) => {
   return (
     <>
       <div
-        key={id}
+        key={_id}
         className="group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
       >
         <Link
           className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-          to={`/product/${id}`}
+          to={`/product/${_id}`}
         >
           <img
             className="peer absolute top-0 right-0 h-full w-full object-cover"
@@ -71,7 +71,7 @@ const Product = ({ imgSrc, id, description, price, title, amazonLink }) => {
             </button>
             <button
               onClick={() =>
-                addToCart(id, price, title, description, imgSrc, amazonLink)
+                addToCart(_id, price, title, description, imgSrc, amazonLink)
               }
               className="block w-full rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
             >

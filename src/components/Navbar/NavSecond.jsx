@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
-import DataContext from "../../context/DataContext";
+import { useProductContext } from "../../context/ProductContext";
 
 function Practice({ setdata }) {
-  const context = useContext(DataContext);
-  const items = context.items;
+  const { items, loading } = useProductContext();
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [isFilterOpen, setisFilterOpen] = useState(false);
@@ -34,6 +33,7 @@ function Practice({ setdata }) {
       >
         Toggle Filter
       </button>
+
       {isFilterOpen && (
         <div className="m-2 max-w-screen">
           <div className="rounded-xl border border-gray-400 bg-white p-6 shadow-lg">
@@ -90,9 +90,12 @@ function Practice({ setdata }) {
               </button>
               <button
                 onClick={filterByCategoryAndPrice}
-                className="active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90"
+                className={`active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={loading}
               >
-                Search
+                {loading ? "Searching..." : "Search"}
               </button>
             </div>
           </div>

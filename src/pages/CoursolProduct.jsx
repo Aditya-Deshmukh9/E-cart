@@ -1,9 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
-import items from "../Utils/Items";
 import Product from "../components/Product";
+import { useProductContext } from "../context/ProductContext";
 
 function CoursolProduct() {
+  const { items, loading } = useProductContext();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -50,11 +52,15 @@ function CoursolProduct() {
         </h1>
       </div>
       <div className="mt-8">
-        <Slider {...settings}>
-          {items.map((item, index) => (
-            <Product key={index} {...item} />
-          ))}
-        </Slider>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <Slider {...settings}>
+            {items.map((item, index) => (
+              <Product key={index} {...item} />
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );

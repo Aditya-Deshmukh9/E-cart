@@ -6,7 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+src/context/ProductContext
+ProductContext
+context
 node_modules
 dist
 dist-ssr

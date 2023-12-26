@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import DataContext from "../context/DataContext";
 
-function CartItems({ id, imgSrc, title, amazonLink }) {
+function CartItems({ _id, imgSrc, title, amazonLink }) {
   const context = useContext(DataContext);
-  const removeFromCart = (id) => {
-    context.setcart((prevCart) => prevCart.filter((item) => item.id !== id));
+  const removeFromCart = (_id) => {
+    context.setcart((prevCart) => prevCart.filter((item) => item._id !== _id));
   };
 
   return (
@@ -17,7 +17,7 @@ function CartItems({ id, imgSrc, title, amazonLink }) {
 
           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
             <div>
-              <dt className="inline">Id - {id}</dt>
+              <dt className="inline">Id - {_id}</dt>
             </div>
           </dl>
         </div>
@@ -34,7 +34,7 @@ function CartItems({ id, imgSrc, title, amazonLink }) {
               min="1"
               value="1"
               readOnly
-              id="Line1Qty"
+              _id="Line1Qty"
               className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
             />
           </form>
@@ -49,7 +49,7 @@ function CartItems({ id, imgSrc, title, amazonLink }) {
               strokeWidth="1.5"
               stroke="currentColor"
               className="h-4 w-4"
-              onClick={() => removeFromCart(id)}
+              onClick={() => removeFromCart(_id)}
             >
               <path
                 strokeLinecap="round"

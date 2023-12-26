@@ -5,31 +5,30 @@ import DataContext from "../context/DataContext";
 function Checkout() {
   const context = useContext(DataContext);
   const checkoutItems = context.cart;
-  console.log(context);
   try {
     return (
       <>
-        {checkoutItems.map((item, index) => (
-          <div key={index} className="w-full sm:mx-10 lg:mx-20">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-                <thead>
-                  <tr>
-                    <th className="whitespace-nowrap px-2 sm:px-4 py-2 font-medium text-gray-900">
-                      Title
-                    </th>
-                    <th className="whitespace-nowrap px-2 sm:px-4 py-2 text-gray-700">
-                      ID
-                    </th>
-                    <th className="whitespace-nowrap px-2 sm:px-4 py-2 text-gray-700">
-                      Price
-                    </th>
-                    <th className="whitespace-nowrap px-2 sm:px-4 py-2">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
+        <div className="w-full sm:mx-10 lg:mx-20">
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+              <thead>
+                <tr>
+                  <th className="whitespace-nowrap px-2 sm:px-4 py-2 font-medium text-gray-900">
+                    Title
+                  </th>
+                  <th className="whitespace-nowrap px-2 sm:px-4 py-2 text-gray-700">
+                    ID
+                  </th>
+                  <th className="whitespace-nowrap px-2 sm:px-4 py-2 text-gray-700">
+                    Price
+                  </th>
+                  <th className="whitespace-nowrap px-2 sm:px-4 py-2">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              {checkoutItems.map((item, index) => (
+                <tbody key={index} className="divide-y divide-gray-200">
                   <tr key={item.id}>
                     <td className="whitespace-nowrap px-2 sm:px-4 py-2 font-medium text-gray-900">
                       {item.title}
@@ -51,10 +50,10 @@ function Checkout() {
                     </td>
                   </tr>
                 </tbody>
-              </table>
-            </div>
+              ))}
+            </table>
           </div>
-        ))}
+        </div>
       </>
     );
   } catch (error) {
