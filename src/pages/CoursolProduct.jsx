@@ -1,7 +1,7 @@
 import React from "react";
-import NewProductCard from "../components/NewProductCard";
 import Slider from "react-slick";
 import items from "../Utils/Items";
+import Product from "../components/Product";
 
 function CoursolProduct() {
   const settings = {
@@ -52,7 +52,7 @@ function CoursolProduct() {
       <div className="mt-8">
         <Slider {...settings}>
           {items.map((item, index) => (
-            <NewProductCard key={index} {...item} />
+            <Product key={index} {...item} />
           ))}
         </Slider>
       </div>
