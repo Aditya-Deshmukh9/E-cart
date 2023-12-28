@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import DataContext from "../context/DataContext";
 
-function CartItems({ _id, imgSrc, title, amazonLink }) {
+function CartItems({ _id, imgSrc, title }) {
   const context = useContext(DataContext);
   const removeFromCart = (_id) => {
     context.setcart((prevCart) => prevCart.filter((item) => item._id !== _id));

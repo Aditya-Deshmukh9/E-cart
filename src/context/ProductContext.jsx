@@ -1,27 +1,24 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const baseurl = "https://myserver2-hfc4.onrender.com";
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://server-ecart.onrender.com/api/product/ecart"
-        );
-        const data = await response.json();
-        setItems(data.msg);
+    axios
+      .get(`${baseurl}/api/data`)
+      .then((response) => {
+        setItems(response.data);
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      })
+      .catch((error) => {
+        console.log("Error fetching data:", error);
         setLoading(false);
-      }
-    };
-
-    fetchData();
+      });
   }, []);
 
   return (
