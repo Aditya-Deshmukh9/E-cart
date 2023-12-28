@@ -13,7 +13,7 @@ function CoursolProduct() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1800,
-    pauseOnHover: true,
+    pauseOnHover: false,
     arrows: false,
     responsive: [
       {
