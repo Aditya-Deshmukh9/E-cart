@@ -6,6 +6,7 @@ const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const baseurl = "https://myserver2-hfc4.onrender.com";
 
   useEffect(() => {
@@ -16,13 +17,13 @@ export const ProductProvider = ({ children }) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log("Error fetching data:", error);
         setLoading(false);
+        setError(`${error.message} Please Refresh Page`);
       });
   }, []);
 
   return (
-    <ProductContext.Provider value={{ items, loading }}>
+    <ProductContext.Provider value={{ items, loading, error }}>
       {children}
     </ProductContext.Provider>
   );

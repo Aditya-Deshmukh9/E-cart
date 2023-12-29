@@ -1,10 +1,11 @@
 import React from "react";
 import Slider from "react-slick";
 import Product from "../components/Product";
+
 import { useProductContext } from "../context/ProductContext";
 
 function CoursolProduct() {
-  const { items, loading } = useProductContext();
+  const { items } = useProductContext();
 
   const settings = {
     dots: true,
@@ -45,22 +46,18 @@ function CoursolProduct() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center lg:px-32 px-5 pt-14">
+    <div className="min-h-screen flex flex-col justify-center lg:px-32 px-5 pt-14 ">
       <div>
-        <h1 className=" font-semibold text-4xl text-center text-ExtraDarkColor">
+        <h1 className="font-semibold text-4xl text-center text-ExtraDarkColor">
           Best sellers
         </h1>
       </div>
       <div className="mt-8">
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <Slider {...settings}>
-            {items.map((item, index) => (
-              <Product key={index} {...item} />
-            ))}
-          </Slider>
-        )}
+        <Slider {...settings}>
+          {items.map((item, index) => (
+            <Product key={index} {...item} />
+          ))}
+        </Slider>
       </div>
     </div>
   );
