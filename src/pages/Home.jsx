@@ -6,11 +6,11 @@ import "slick-carousel/slick/slick-theme.css";
 import CoursolProduct from "./CoursolProduct";
 import { useProductContext } from "../context/ProductContext";
 import Loading from "../components/Loading";
+import Error from "./Error";
 
 function Home() {
-  const { items, loading } = useProductContext();
+  const { items, loading, error } = useProductContext();
   const [data, setdata] = useState([...items]);
-  const load = 4;
 
   useEffect(() => {
     setdata([...items]);
@@ -18,8 +18,16 @@ function Home() {
   return (
     <>
       <NavSecond setdata={setdata} />
-      {loading ? <Loading /> : <Products items={data} />}
-      <CoursolProduct />
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error error={error} />
+      ) : (
+        <>
+          <Products items={data} />
+          <CoursolProduct />
+        </>
+      )}
     </>
   );
 }

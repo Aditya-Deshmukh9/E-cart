@@ -8,6 +8,7 @@ import SearchItem from "./pages/SearchItem";
 import { ToastContainer } from "react-toastify";
 import Checkout from "./pages/Checkout";
 import Loading from "./components/Loading";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/auth/checkout" element={<Checkout />} />
         <Route path="/loading" element={<Loading />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </Router>
   );
