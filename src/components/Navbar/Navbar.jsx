@@ -21,8 +21,8 @@ function Navbar() {
       {/* Top Nav */}
       <div className="bg-indigo-950 flex flex-row justify-between items-center px-4 py-2">
         {/* Logo */}
-        <Link to="/" className="text-white text-xl font-bold sm:text-2xl ">
-          E-Cart
+        <Link to="/" className="text-white text-xl font-extrabold sm:text-2xl ">
+          E Cart
         </Link>
 
         {/* Search Bar */}

@@ -32,14 +32,14 @@ const Product = ({ imgSrc, _id, description, price, title, amazonLink }) => {
     <>
       <div
         key={_id}
-        className="group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+        className="grid-item group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
       >
         <Link
           className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
           to={`/product/${_id}`}
         >
           <img
-            className="peer absolute top-0 right-0 h-full w-full object-cover"
+            className="absolute top-0 right-0 h-full w-full object-cover"
             src={imgSrc}
             alt="product image"
           />

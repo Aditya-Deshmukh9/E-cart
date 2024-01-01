@@ -3,8 +3,19 @@ import DataContext from "../context/DataContext";
 
 function CartItems({ _id, imgSrc, title }) {
   const context = useContext(DataContext);
+
   const removeFromCart = (_id) => {
-    context.setcart((prevCart) => prevCart.filter((item) => item._id !== _id));
+    context.setcart((prevCart) => {
+      const indexToRemove = prevCart.findIndex((item) => item._id === _id);
+
+      if (indexToRemove !== -1) {
+        const newCart = [...prevCart];
+        newCart.splice(indexToRemove, 1);
+        return newCart;
+      }
+
+      return prevCart;
+    });
   };
 
   return (
