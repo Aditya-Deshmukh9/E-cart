@@ -1,106 +1,112 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useProductContext } from "../../context/ProductContext";
 
 function Practice({ setdata }) {
   const { items, loading } = useProductContext();
   const [category, setCategory] = useState("");
-  const [price, setPrice] = useState("");
-  const [isFilterOpen, setisFilterOpen] = useState(false);
+  const [sortType, setSortType] = useState("lowToHigh");
+  // const [isFilterOpen, setisFilterOpen] = useState(false);
 
   const filterByCategoryAndPrice = () => {
-    let filteredItems = items;
-
+    let filteredItems = [...items];
+    console.log(filteredItems);
+    console.log(category);
     if (category) {
       filteredItems = filteredItems.filter((e) => e.category === category);
     }
 
-    if (price) {
-      filteredItems = filteredItems.filter((e) => e.price >= parseFloat(price));
+    if (sortType === "lowToHigh") {
+      filteredItems.sort((a, b) => a.price - b.price);
+    } else if (sortType === "highToLow") {
+      filteredItems.sort((a, b) => b.price - a.price);
     }
 
     setdata(filteredItems);
   };
 
-  const toggleFilter = () => {
-    setisFilterOpen(!isFilterOpen);
-  };
+  // const toggleFilter = () => {
+  //   setisFilterOpen(!isFilterOpen);
+  // };
 
   return (
     <>
-      <button
-        className="my-2 mx-1 rounded bg-indigo-600 text-white border  p-2 text-sm font-medium transition hover:scale-105"
-        onClick={toggleFilter}
-      >
-        Toggle Filter
-      </button>
+      {/* <div className="flex items-center justify-center">
+        <button
+          className="mt-10 rounded bg-indigo-600 text-white border  p-2 text-sm font-medium transition hover:scale-105"
+          onClick={toggleFilter}
+        >
+          Toggle Filter
+        </button>
+      </div>
 
-      {isFilterOpen && (
-        <div className="m-2 max-w-screen">
-          <div className="rounded-xl border border-gray-400 bg-white p-6 shadow-lg">
-            <h2 className="text-stone-700 text-xl font-bold">Apply filters</h2>
-            <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              <div className="flex flex-col">
-                <label
-                  htmlFor="status"
-                  className="text-stone-600 text-sm font-medium"
-                >
-                  Category
-                </label>
+      {isFilterOpen && ( */}
+      <div className="m-2 max-w-screen">
+        <div className="p-6">
+          <h2 className="text-stone-700 text-xl font-bold">Apply filters</h2>
+          <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="flex flex-col">
+              <label
+                htmlFor="status"
+                className="text-stone-600 text-sm font-medium"
+              >
+                Category
+              </label>
 
-                <select
-                  id="status"
-                  className="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  <option value="">All</option>
-                  <option value="mobiles">Mobile</option>
-                  <option value="laptops">Laptop</option>
-                  <option value="tablets">Tablets</option>
-                </select>
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="status"
-                  className="text-stone-600 text-sm font-medium"
-                >
-                  Price
-                </label>
-
-                <select
-                  id="status"
-                  className="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                >
-                  <option value="29999">0 to 29999</option>
-                  <option value="49999">49999+</option>
-                  <option value="69999">69999+</option>
-                  <option value="89999">89999+</option>
-                </select>
-              </div>
+              <select
+                id="status"
+                className="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">All</option>
+                {[...new Set(items.map((item) => item.category))].map(
+                  (category, index) => (
+                    <option key={index} value={category}>
+                      {category}
+                    </option>
+                  )
+                )}
+              </select>
             </div>
+            <div className="flex flex-col">
+              <label
+                htmlFor="status"
+                className="text-stone-600 text-sm font-medium"
+              >
+                Price
+              </label>
 
-            <div className="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
-              <button
-                onClick={() => setdata(items)}
-                className="active:scale-95 rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90"
+              <select
+                id="status"
+                className="mt-2 block w-full rounded-md border border-gray-200 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                value={sortType}
+                onChange={(e) => setSortType(e.target.value)}
               >
-                Reset
-              </button>
-              <button
-                onClick={filterByCategoryAndPrice}
-                className={`active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90 ${
-                  loading ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                disabled={loading}
-              >
-                {loading ? "Searching..." : "Search"}
-              </button>
+                <option value="lowToHigh">Low to High</option>
+                <option value="highToLow">High to Low</option>
+              </select>
             </div>
           </div>
+
+          <div className="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
+            <button
+              onClick={() => setdata(items)}
+              className="active:scale-95 rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90"
+            >
+              Reset
+            </button>
+            <button
+              onClick={filterByCategoryAndPrice}
+              className={`active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90 ${
+                loading ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={loading}
+            >
+              {loading ? "Searching..." : "Search"}
+            </button>
+          </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

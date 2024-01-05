@@ -46,17 +46,20 @@ function CoursolProduct() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center lg:px-32 px-5 pt-14 ">
+    <div className="min-h-screen w-full flex flex-col justify-center lg:px-32 px-5 pt-10 ">
       <div>
-        <h1 className="font-semibold text-4xl text-center text-ExtraDarkColor">
-          Best sellers
+        <h1 className="font-semibold text-4xl text-center text-blue-800">
+          LAPTOPS 50% OFF
         </h1>
       </div>
-      <div className="mt-8">
+      <div className="mt-2">
         <Slider {...settings}>
-          {items.map((item, index) => (
-            <Product key={index} {...item} />
-          ))}
+          {items.map((item, index) => {
+            if (item.category === "laptops") {
+              return <Product key={index} {...item} />;
+            }
+            return null;
+          })}
         </Slider>
       </div>
     </div>

@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import DataContext from "../context/DataContext";
 
-function CartItems({ _id, imgSrc, title }) {
+function CartItems({ id, thumbnail, title }) {
   const context = useContext(DataContext);
 
-  const removeFromCart = (_id) => {
+  const removeFromCart = (id) => {
     context.setcart((prevCart) => {
-      const indexToRemove = prevCart.findIndex((item) => item._id === _id);
+      const indexToRemove = prevCart.findIndex((item) => item.id === id);
 
       if (indexToRemove !== -1) {
         const newCart = [...prevCart];
@@ -21,14 +21,18 @@ function CartItems({ _id, imgSrc, title }) {
   return (
     <>
       <li className="flex items-center gap-4">
-        <img src={imgSrc} alt="" className="h-16 w-16 rounded object-cover" />
+        <img
+          src={thumbnail}
+          alt=""
+          className="h-16 w-16 rounded object-cover"
+        />
 
         <div>
           <h3 className="text-sm text-gray-900">{title}</h3>
 
           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
             <div>
-              <dt className="inline">Id - {_id}</dt>
+              <dt className="inline">Id - {id}</dt>
             </div>
           </dl>
         </div>
@@ -60,7 +64,7 @@ function CartItems({ _id, imgSrc, title }) {
               strokeWidth="1.5"
               stroke="currentColor"
               className="h-4 w-4"
-              onClick={() => removeFromCart(_id)}
+              onClick={() => removeFromCart(id)}
             >
               <path
                 strokeLinecap="round"

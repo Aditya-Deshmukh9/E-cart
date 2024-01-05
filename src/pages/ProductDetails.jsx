@@ -8,19 +8,19 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function ProductDetails() {
-  const { id } = useParams();
+  const { _id } = useParams();
   const { items, loading } = useProductContext();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const context = useContext(DataContext);
 
   //Add Products to Cart
-  const addToCart = (_id, price, title, imgSrc, amazonLink) => {
+  const addToCart = (id, price, title, thumbnail, amazonLink) => {
     const obj = {
-      _id,
+      id,
       price,
       title,
-      imgSrc,
+      thumbnail,
       amazonLink,
     };
     context.setcart([...context.cart, obj]);
@@ -38,17 +38,17 @@ function ProductDetails() {
 
   useEffect(() => {
     // Filter Id of item selected in product list
-    const filterProduct = items.filter((product) => product._id == id);
+    const filterProduct = items.filter((product) => product.id == _id);
     setProduct(filterProduct[0]);
 
     // Filter catagory for related products
     const Related = items.filter((e) => e.category == product.category);
     setRelatedProducts(Related);
-  }, [id, product.category]);
+  }, [_id, product.category]);
 
   console.log(relatedProducts);
 
-  const { _id, imgSrc, title, description, price, amazonLink } = product;
+  const { id, thumbnail, title, description, price, amazonLink } = product;
 
   return (
     <>
@@ -63,7 +63,7 @@ function ProductDetails() {
                 <div className="sticky top-0 z-50 overflow-hidden ">
                   <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                     <img
-                      src={imgSrc}
+                      src={thumbnail}
                       alt=""
                       className="object-cover w-full lg:h-full "
                     />
@@ -75,7 +75,7 @@ function ProductDetails() {
                         className="block border border-blue-300 hover:border-blue-300"
                       >
                         <img
-                          src={imgSrc}
+                          src={thumbnail}
                           alt=""
                           className="object-cover w-full lg:h-20"
                         />
@@ -87,7 +87,7 @@ function ProductDetails() {
                         className="block border border-transparent hover:border-blue-300"
                       >
                         <img
-                          src={imgSrc}
+                          src={thumbnail}
                           alt=""
                           className="object-cover w-full lg:h-20"
                         />
@@ -99,7 +99,7 @@ function ProductDetails() {
                         className="block border border-transparent hover:border-blue-300"
                       >
                         <img
-                          src={imgSrc}
+                          src={thumbnail}
                           alt=""
                           className="object-cover w-full lg:h-20"
                         />
@@ -111,7 +111,7 @@ function ProductDetails() {
                         className="block border border-transparent hover:border-blue-300"
                       >
                         <img
-                          src={imgSrc}
+                          src={thumbnail}
                           alt=""
                           className="object-cover w-full lg:h-20"
                         />
@@ -172,7 +172,7 @@ function ProductDetails() {
                   <div className="flex flex-wrap items-center gap-4">
                     <button
                       onClick={() =>
-                        addToCart(price, _id, title, imgSrc, amazonLink)
+                        addToCart(price, id, title, thumbnail, amazonLink)
                       }
                       className="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700"
                     >

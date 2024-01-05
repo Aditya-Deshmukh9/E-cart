@@ -4,15 +4,23 @@ import DataContext from "../context/DataContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Product = ({ imgSrc, _id, description, price, title, amazonLink }) => {
+const Product = ({
+  thumbnail,
+  id,
+  description,
+  price,
+  title,
+  amazonLink,
+  discountPercentage,
+}) => {
   const context = useContext(DataContext);
-  const addToCart = (_id, price, title, description, imgSrc, amazonLink) => {
+  const addToCart = (id, price, title, description, thumbnail, amazonLink) => {
     const obj = {
-      _id,
+      id,
       price,
       title,
       description,
-      imgSrc,
+      thumbnail,
       amazonLink,
     };
     context.setcart([...context.cart, obj]);
@@ -31,21 +39,21 @@ const Product = ({ imgSrc, _id, description, price, title, amazonLink }) => {
   return (
     <>
       <div
-        key={_id}
+        key={id}
         className="grid-item group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
       >
         <Link
           className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-          to={`/product/${_id}`}
+          to={`/product/${id}`}
         >
           <img
             className="absolute top-0 right-0 h-full w-full object-cover"
-            src={imgSrc}
+            src={thumbnail}
             alt="product image"
           />
 
           <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-            39% OFF
+            {discountPercentage.toFixed(0)}% OFF
           </span>
         </Link>
         <div className="mt-4 px-5 pb-5">
@@ -71,7 +79,7 @@ const Product = ({ imgSrc, _id, description, price, title, amazonLink }) => {
             </button>
             <button
               onClick={() =>
-                addToCart(_id, price, title, description, imgSrc, amazonLink)
+                addToCart(id, price, title, description, thumbnail, amazonLink)
               }
               className="block w-full rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
             >

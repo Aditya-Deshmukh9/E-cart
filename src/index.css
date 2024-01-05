@@ -8,3 +8,7 @@ body {
     padding: 0;
     background-color: #eaedf5;
 }
+
+#navbar {
+    background: rgb(0, 49, 183);
+}
