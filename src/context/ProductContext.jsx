@@ -13,6 +13,7 @@ export const ProductProvider = ({ children }) => {
     axios
       .get(`${baseurl}/products?limit=20`)
       .then((response) => {
+        // console.log(response.data.products);
         setItems(response.data.products);
         setLoading(false);
       })

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
@@ -9,6 +8,9 @@ import { ToastContainer } from "react-toastify";
 import Checkout from "./pages/Checkout";
 import Loading from "./components/Loading";
 import Error from "./pages/Error";
+import NewNav from "./components/Navbar/NewNav";
+import ProductPage from "./pages/ProductPage";
+import YourComponent from "./pages/YorComponent";
 
 function App() {
   return (
@@ -25,11 +27,12 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-      <Navbar />
-      {/* <Practice /> */}
+      <NewNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/y" element={<YourComponent />} />
+        <Route path="/products" element={<ProductPage />} />
         <Route path="/search/:term" element={<SearchItem />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/auth/checkout" element={<Checkout />} />
