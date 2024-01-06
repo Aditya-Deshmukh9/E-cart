@@ -3,9 +3,10 @@ import Slider from "react-slick";
 import Product from "../components/Product";
 
 import { useProductContext } from "../context/ProductContext";
+import Loading from "../components/Loading";
 
 function CoursolProduct() {
-  const { items } = useProductContext();
+  const { items, loading } = useProductContext();
 
   const settings = {
     dots: true,
@@ -44,6 +45,10 @@ function CoursolProduct() {
       },
     ],
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="min-h-screen w-full flex flex-col justify-center lg:px-32 px-5 pt-10 ">

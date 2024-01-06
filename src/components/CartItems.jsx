@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import DataContext from "../context/DataContext";
-
 function CartItems({ id, thumbnail, title }) {
   const context = useContext(DataContext);
 
