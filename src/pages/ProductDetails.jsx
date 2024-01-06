@@ -15,13 +15,13 @@ function ProductDetails() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const context = useContext(DataContext);
 
-  const addToCart = (id, price, title, imgSrc, amazonLink) => {
+  const addToCart = (id, price, title, description, thumbnail) => {
     const obj = {
       id,
       price,
       title,
-      imgSrc,
-      amazonLink,
+      description,
+      thumbnail,
     };
     context.setcart([...context.cart, obj]);
     toast.success("Item added on cart", {
@@ -85,11 +85,11 @@ function ProductDetails() {
                     <button
                       onClick={() =>
                         addToCart(
-                          product.price,
                           product.id,
+                          product.price,
                           product.title,
-                          product.thumbnail,
-                          product.amazonLink
+                          product.description,
+                          product.thumbnail
                         )
                       }
                       className="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700"

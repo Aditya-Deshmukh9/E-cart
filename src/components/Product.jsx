@@ -10,18 +10,16 @@ const Product = ({
   description,
   price,
   title,
-  amazonLink,
   discountPercentage,
 }) => {
   const context = useContext(DataContext);
-  const addToCart = (id, price, title, description, thumbnail, amazonLink) => {
+  const addToCart = (id, price, title, description, thumbnail) => {
     const obj = {
       id,
       price,
       title,
       description,
       thumbnail,
-      amazonLink,
     };
     context.setcart([...context.cart, obj]);
     toast.success("Item added on cart", {
@@ -79,7 +77,7 @@ const Product = ({
             </button>
             <button
               onClick={() =>
-                addToCart(id, price, title, description, thumbnail, amazonLink)
+                addToCart(id, price, title, description, thumbnail)
               }
               className="block w-full rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
             >
