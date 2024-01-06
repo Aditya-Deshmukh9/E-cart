@@ -4,13 +4,12 @@ import { useProductContext } from "../../context/ProductContext";
 function Practice({ setdata }) {
   const { items, loading } = useProductContext();
   const [category, setCategory] = useState("");
-  const [sortType, setSortType] = useState("lowToHigh");
+  const [sortType, setSortType] = useState("");
   // const [isFilterOpen, setisFilterOpen] = useState(false);
 
   const filterByCategoryAndPrice = () => {
     let filteredItems = [...items];
-    console.log(filteredItems);
-    console.log(category);
+
     if (category) {
       filteredItems = filteredItems.filter((e) => e.category === category);
     }
@@ -24,22 +23,8 @@ function Practice({ setdata }) {
     setdata(filteredItems);
   };
 
-  // const toggleFilter = () => {
-  //   setisFilterOpen(!isFilterOpen);
-  // };
-
   return (
     <>
-      {/* <div className="flex items-center justify-center">
-        <button
-          className="mt-10 rounded bg-indigo-600 text-white border  p-2 text-sm font-medium transition hover:scale-105"
-          onClick={toggleFilter}
-        >
-          Toggle Filter
-        </button>
-      </div>
-
-      {isFilterOpen && ( */}
       <div className="m-2 max-w-screen">
         <div className="p-6">
           <h2 className="text-stone-700 text-xl font-bold">Apply filters</h2>
@@ -82,6 +67,7 @@ function Practice({ setdata }) {
                 value={sortType}
                 onChange={(e) => setSortType(e.target.value)}
               >
+                <option value="">All</option>
                 <option value="lowToHigh">Low to High</option>
                 <option value="highToLow">High to Low</option>
               </select>
@@ -91,7 +77,7 @@ function Practice({ setdata }) {
           <div className="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
             <button
               onClick={() => setdata(items)}
-              className="active:scale-95 rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90"
+              className="active:scale-95 rounded-lg bg-gray-300 border px-8 py-2 font-medium text-gray-600 outline-none focus:ring hover:opacity-90"
             >
               Reset
             </button>

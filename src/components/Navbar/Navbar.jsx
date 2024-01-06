@@ -64,7 +64,7 @@ function Navbar() {
           <FaUser size={25} className="hidden text-white" />
           <Link
             to={"/cart"}
-            className=" text-slate-700 relative border border-slate-400 p-1"
+            className=" text-slate-200 relative border border-slate-400 p-1"
           >
             <FaShoppingCart size={25} className=" cursor-pointer" />
             <div className=" absolute top-[-8px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
