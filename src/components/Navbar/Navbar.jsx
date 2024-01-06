@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import logo from "../../assets/E-Cart.webp";
 import DataContext from "../../context/DataContext";
+import { IoIosSearch } from "react-icons/io";
 
 function Navbar() {
   const [searchTerm, setsearchTerm] = useState("");
@@ -20,60 +21,58 @@ function Navbar() {
   return (
     <>
       {/* Top Nav */}
-      <div
+      <nav
         id="navbar"
-        className="flex flex-row justify-between items-center px-4 py-2"
+        className="flex flex-row justify-between items-center px-1 sm:px-4 border-b border-slate-400 shadow shadow-slate-300"
       >
         {/* Logo */}
         <Link to="/" className="text-white text-xl font-extrabold sm:text-2xl ">
           <img className="h-12 w-auto" src={logo} alt="logo" />
         </Link>
 
-        {/* Search Bar */}
-        <form onSubmit={handleSubmit}>
-          <div className="border-b-blue-600 focus-within:border-none focus-within:ring focus-within:ring-offset-2 flex h-8 sm:h-9 items-center justify-start rounded-xl border-b-2 bg-gray-100 leading-4 ring-blue-600 sm:w-72">
+        <div className="flex items-center gap-4">
+          <div className="relative">
+            <label className="sr-only" htmlFor="search">
+              {" "}
+              Search{" "}
+            </label>
+
             <input
-              placeholder="Search here..."
+              className="h-8 w-full rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-72"
+              id="search"
+              type="search"
+              placeholder="Search here"
               value={searchTerm}
               onChange={(e) => setsearchTerm(e.target.value)}
-              className="peer ml-2 flex-grow bg-transparent text-gray-500 outline-none rounded"
             />
+
             <button
               type="button"
-              className="peer-focus:mr-2 z-20 cursor-pointer text-blue-600 outline-none duration-150 hover:scale-125"
+              className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full p-2 text-gray-600 transition hover:text-gray-700"
             >
-              <svg className="h-6 w-6 stroke-2" viewBox="0 0 32 32" fill="none">
-                <circle
-                  cx="15"
-                  cy="14"
-                  r="8"
-                  stroke="currentColor"
-                  fill="transparent"
-                ></circle>
-                <line
-                  x1="21.1514"
-                  y1="19.7929"
-                  x2="26.707"
-                  y2="25.3484"
-                  stroke="currentColor"
-                  fill="transparent"
-                ></line>
-              </svg>
+              <span className="sr-only">Search</span>
+              <IoIosSearch
+                className="h-4 w-4 cursor-pointer"
+                onSubmit={handleSubmit}
+              />
             </button>
           </div>
-        </form>
+        </div>
 
         {/* E-commerce Basket */}
-        <div className="flex items-center gap-5 m-1 px-2">
+        <div className="flex items-center gap-5 m-1 px-2 py-2 ">
           <FaUser size={25} className="hidden text-white" />
-          <Link to={"/cart"} className=" text-white relative">
+          <Link
+            to={"/cart"}
+            className=" text-slate-700 relative border border-slate-400 p-1"
+          >
             <FaShoppingCart size={25} className=" cursor-pointer" />
-            <div className=" absolute top-[-11px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
+            <div className=" absolute top-[-8px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
               {context.cart.length}
             </div>
           </Link>
         </div>
-      </div>
+      </nav>
     </>
   );
 }
