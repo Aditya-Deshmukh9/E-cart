@@ -14,6 +14,8 @@ function Cart() {
     return total;
   };
 
+  console.log(cartProduct);
+
   return (
     <>
       <section>
