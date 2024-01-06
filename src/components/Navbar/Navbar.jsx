@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
+import logo from "../../assets/E-Cart.webp";
 import DataContext from "../../context/DataContext";
 
 function Navbar() {
@@ -19,15 +20,18 @@ function Navbar() {
   return (
     <>
       {/* Top Nav */}
-      <div className="bg-indigo-950 flex flex-row justify-between items-center px-4 py-2">
+      <div
+        id="navbar"
+        className="flex flex-row justify-between items-center px-4 py-2"
+      >
         {/* Logo */}
-        <Link to="/" className="text-white text-xl font-bold sm:text-2xl ">
-          E-Cart
+        <Link to="/" className="text-white text-xl font-extrabold sm:text-2xl ">
+          <img className="h-12 w-auto" src={logo} alt="logo" />
         </Link>
 
         {/* Search Bar */}
         <form onSubmit={handleSubmit}>
-          <div className="border-b-blue-600 focus-within:border-none focus-within:ring focus-within:ring-offset-2 flex h-10 sm:h-10 items-center justify-start rounded-xl border-b-2 bg-gray-100 leading-4 ring-blue-600  sm:w-96">
+          <div className="border-b-blue-600 focus-within:border-none focus-within:ring focus-within:ring-offset-2 flex h-8 sm:h-9 items-center justify-start rounded-xl border-b-2 bg-gray-100 leading-4 ring-blue-600 sm:w-72">
             <input
               placeholder="Search here..."
               value={searchTerm}

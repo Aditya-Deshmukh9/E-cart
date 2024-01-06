@@ -17,6 +17,7 @@ function Home() {
   }, [items]);
   return (
     <>
+      <CoursolProduct />
       <NavSecond setdata={setdata} />
       {loading ? (
         <Loading />
@@ -25,7 +26,6 @@ function Home() {
       ) : (
         <>
           <Products items={data} />
-          <CoursolProduct />
         </>
       )}
     </>

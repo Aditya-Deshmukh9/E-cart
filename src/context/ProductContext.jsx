@@ -7,13 +7,13 @@ export const ProductProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const baseurl = "https://myserver2-hfc4.onrender.com";
+  const baseurl = "https://dummyjson.com";
 
   useEffect(() => {
     axios
-      .get(`${baseurl}/api/data`)
+      .get(`${baseurl}/products?limit=20`)
       .then((response) => {
-        setItems(response.data);
+        setItems(response.data.products);
         setLoading(false);
       })
       .catch((error) => {
