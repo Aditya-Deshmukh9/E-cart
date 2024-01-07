@@ -10,7 +10,7 @@ import Loading from "./components/Loading";
 import Error from "./pages/Error";
 import NewNav from "./components/Navbar/NewNav";
 import ProductPage from "./pages/ProductPage";
-import YourComponent from "./pages/YorComponent";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/y" element={<YourComponent />} />
+        <Route path="/about" element={<About />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/search/:term" element={<SearchItem />} />
         <Route path="/product/:id" element={<ProductDetails />} />

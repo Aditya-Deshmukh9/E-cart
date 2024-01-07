@@ -55,7 +55,7 @@ const NewNav = () => {
                   </Link>
 
                   <Link
-                    to="#"
+                    to="/about"
                     className="ml-4 px-3 py-2 rounded-md text-sm leading-5 font-medium text-gray-100  hover:bg-blue-500 hover:text-white transition duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white "
                   >
                     {" "}
@@ -127,7 +127,7 @@ const NewNav = () => {
               Products{" "}
             </Link>
             <Link
-              to="#"
+              to="/about"
               className="mt-1 block px-3 py-2 rounded-md text-white font-medium hover:bg-yellow-500 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
             >
               About us{" "}
