@@ -24,7 +24,7 @@ function About() {
       return false;
     })
     .map((item) => ({
-      name: item.title,
+      name: item.category,
       uv: item.price,
     }));
 
