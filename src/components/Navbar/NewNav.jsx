@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { IoIosSearch } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { RiMenu3Line } from "react-icons/ri";
 import logo from "../../assets/E-Cart.webp";
+import searchlogo from "../../assets/search-26277.webp";
 import DataContext from "../../context/DataContext";
 
 const NewNav = () => {
@@ -71,7 +71,7 @@ const NewNav = () => {
                 </label>
 
                 <input
-                  className="h-8 w-24 rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm  sm:w-72 lg:w-72"
+                  className="h-9 w-40 rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm  sm:w-72 lg:w-72"
                   id="search"
                   type="search"
                   placeholder="Search here"
@@ -85,7 +85,11 @@ const NewNav = () => {
                   onClick={handleSubmit}
                 >
                   <span className="sr-only">Search</span>
-                  <IoIosSearch className="h-4 w-4 cursor-pointer" />
+                  <img
+                    src={searchlogo}
+                    className="h-8 w-8 cursor-pointer"
+                    alt="SearchLogo"
+                  />
                 </button>
               </div>
             </div>
