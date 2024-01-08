@@ -24,26 +24,32 @@ export const ProductProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
+
         const encryptedData = localStorage.getItem("token");
 
         if (encryptedData) {
-          const decryptedData = decryptData(encryptedData);
-          setItems(decryptedData);
-          setLoading(false);
+          try {
+            const decryptedData = decryptData(encryptedData);
+            setItems(decryptedData);
+          } catch (decryptionError) {
+            console.error("Decryption Error:", decryptionError);
+
+            localStorage.removeItem("token");
+          }
         } else {
           const response = await axios.get(`${baseurl}/products?limit=20`);
           const fetchedData = response.data.products;
-          setItems(fetchedData);
 
-          // Encrypt and cache the fetched data
           const encryptedDataToCache = encryptData(fetchedData);
           localStorage.setItem("token", encryptedDataToCache);
 
-          setLoading(false);
+          setItems(fetchedData);
         }
       } catch (error) {
+        setError(`${error.message}. Please refresh the page.`);
+      } finally {
         setLoading(false);
-        setError(`${error.message} Please Refresh Page`);
       }
     };
 
