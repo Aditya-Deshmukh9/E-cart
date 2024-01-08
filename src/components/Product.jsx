@@ -38,7 +38,7 @@ const Product = ({
     <>
       <div
         key={id}
-        className="grid-item group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
+        className="grid-item group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md "
       >
         <Link
           className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
@@ -62,18 +62,13 @@ const Product = ({
             <p>
               <span className="text-3xl font-bold text-slate-900">
                 {"₹ "}
-                {price}
-              </span>
-              <span className="text-sm text-slate-900 line-through">
-                {"₹ "}
-                100,000
+                {(price * 75.5).toFixed(0)}
               </span>
             </p>
           </div>
           <div className="mt-4 flex flex-row justify-between gap-2">
             <button className="block w-full rounded bg-blue-500 text-white p-2 text-sm font-medium transition hover:scale-105">
-              {"₹ "}
-              {price}
+              ₹ {(price * 75.5).toFixed(0)}
             </button>
             <button
               onClick={() =>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const YourComponent = ({ imgs = [{ imgs: "" }], thumbnail }) => {
+const MyImages = ({ imgs = [{ imgs: "" }], thumbnail }) => {
   const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
@@ -34,19 +34,6 @@ const YourComponent = ({ imgs = [{ imgs: "" }], thumbnail }) => {
                     />
                   </div>
                 ))}
-
-                {/* {imgs.map((image, index) => (
-            <div className="w-1/2 p-2 sm:w-1/4" key={index}>
-              <a className="block border border-blue-300 hover:border-blue-300">
-                <img
-                  src={image}
-                  onClick={() => setSelectedImage(image)}
-                  alt=""
-                  className="object-cover w-full lg:h-20"
-                />
-              </a>
-            </div>
-          ))} */}
               </div>
             </div>
           </div>
@@ -56,4 +43,4 @@ const YourComponent = ({ imgs = [{ imgs: "" }], thumbnail }) => {
   );
 };
 
-export default YourComponent;
+export default MyImages;

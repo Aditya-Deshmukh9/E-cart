@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import CryptoJS from "crypto-js";
 
-const secretKey = "aoisdj98wedoliwae8d.oioo9hfrolsi9hwe[9"; // Replace with a strong secret key
+const secretKey = "aoisdj98wedoliwae8d.oioo9hfrolsi9hwe[9h54656yt5%%#@#@@v";
 
 const encryptData = (data) => {
   return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey).toString();

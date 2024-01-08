@@ -33,8 +33,8 @@ function CartItems({ id, thumbnail, title, price, description }) {
           <h3 className="text-sm font-bold text-black hover:text-blue-600">
             {title}
           </h3>
-          <h3 className="text-xs text-gray-900 hover:text-blue-600">
-            {description}
+          <h3 className="text-sm text-gray-900 hover:text-blue-600">
+            ₹ {(price * 75.5).toFixed(0)}
           </h3>
 
           <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
@@ -45,10 +45,7 @@ function CartItems({ id, thumbnail, title, price, description }) {
         </Link>
 
         <div className="flex flex-1 items-center justify-end gap-2">
-          <h2 className="bg-slate-200 p-1">
-            {"₹ "}
-            {price}
-          </h2>
+          <h2 className="bg-slate-200 p-1 inline-block">Qty 1</h2>
 
           <button
             onClick={() => removeFromCart(id)}

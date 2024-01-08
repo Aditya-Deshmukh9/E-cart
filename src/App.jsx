@@ -11,7 +11,7 @@ import Error from "./pages/Error";
 import NewNav from "./components/Navbar/NewNav";
 import ProductPage from "./pages/ProductPage";
 import About from "./pages/About";
-
+import YorComponent from "./pages/YorComponent";
 function App() {
   return (
     <Router>
@@ -32,6 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
+        <Route path="/y" element={<YorComponent />} />
         <Route path="/products" element={<ProductPage />} />
         <Route path="/search/:term" element={<SearchItem />} />
         <Route path="/product/:id" element={<ProductDetails />} />

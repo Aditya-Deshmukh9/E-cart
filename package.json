@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.3",
     "crypto-js": "^4.2.0",
+    "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
+    "react-redux": "^9.0.4",
     "react-router": "^6.18.0",
     "react-router-dom": "^6.21.1",
     "react-slick": "^0.29.0",

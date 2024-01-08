@@ -71,7 +71,7 @@ const NewNav = () => {
                 </label>
 
                 <input
-                  className="h-8 w-24 rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm  sm:w-72 lg:w-72"
+                  className="h-9 w-40 rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm  sm:w-72 lg:w-72"
                   id="search"
                   type="search"
                   placeholder="Search here"
@@ -87,7 +87,7 @@ const NewNav = () => {
                   <span className="sr-only">Search</span>
                   <img
                     src={searchlogo}
-                    className="h-4 w-4 cursor-pointer"
+                    className="h-8 w-8 cursor-pointer"
                     alt="SearchLogo"
                   />
                 </button>
