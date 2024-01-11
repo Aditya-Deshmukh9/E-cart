@@ -14,6 +14,7 @@ function Home() {
   useEffect(() => {
     setdata([...items]);
   }, [items]);
+  console.log(items);
   return (
     <>
       {loading ? (

@@ -65,6 +65,7 @@ function About() {
             </AreaChart>
           </ResponsiveContainer>
         </div>
+        <h2 className="font-bold text-sm">Category Wise Highest Price </h2>
       </div>
     </>
   );

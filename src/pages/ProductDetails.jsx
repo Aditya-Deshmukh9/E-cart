@@ -1,30 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProductContext } from "../context/ProductContext";
 import MyImages from "../components/MyImages";
 import Products from "../components/Products";
 import CoursolProduct from "./CoursolProduct";
-import DataContext from "../context/DataContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Breadcrumbs from "../components/Breadcrumb";
+import { addToCart } from "../Redux/fetures/cartSlice";
+import { useDispatch } from "react-redux";
+import Star from "../components/star";
 
 function ProductDetails() {
   const { id } = useParams();
   const { items, loading } = useProductContext();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const context = useContext(DataContext);
+  const dispatch = useDispatch()
 
-  const addToCart = (id, price, title, description, thumbnail) => {
-    const obj = {
-      id,
-      price,
-      title,
-      description,
-      thumbnail,
-    };
-    context.setcart([...context.cart, obj]);
+  const handleCart = () => {
+    const { id, price, title, description, thumbnail } = product;
+
+    dispatch(addToCart({ id, price, title, description, thumbnail }));
+
     toast.success("Item added on cart", {
       position: "top-right",
       autoClose: 1500,
@@ -35,7 +33,7 @@ function ProductDetails() {
       progress: undefined,
       theme: "dark",
     });
-  };
+  }
 
   useEffect(() => {
     const filterProduct = items.filter((e) => e.id == id);
@@ -44,6 +42,19 @@ function ProductDetails() {
     const Related = items.filter((e) => e.category == product.category);
     setRelatedProducts(Related);
   }, [id, items, product.category]);
+
+  const formatNumberWithCommas = (number) => {
+    if (number !== undefined && number !== null) {
+      return number.toLocaleString('en-IN', {
+        maximumFractionDigits: 0,
+        style: 'currency',
+        currency: 'INR',
+      });
+    }
+    return '';
+  };
+
+  const priceINR = formatNumberWithCommas(product.price);
 
   return (
     <>
@@ -72,31 +83,29 @@ function ProductDetails() {
                 <div className="w-full px-4 md:w-1/2 ">
                   <div className="lg:pl-20">
                     <div className="mb-8 ">
-                      <h2 className="max-w-xl mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
-                        {product.title}
-                      </h2>
+                      <div className="flex flex-row justify-between">
+                        <h2 className=" max-w-xl mb-6 text-2xl font-bold dark:text-gray-400 md:text-4xl">
+                          {product.title}
+                        </h2>
+                        <div className="text-4xl font-bold text-gray-700 dark:text-gray-400 ">
+                          <Star stars={product.rating} />
+                        </div>
+                      </div>
+
                       <p className="inline-block mb-6 text-4xl font-bold text-gray-700 dark:text-gray-400 ">
-                        <span>₹ {(product.price * 75.5).toFixed(0)}</span>
+                        <span>{priceINR}</span>
                         <span className="text-base font-normal text-gray-500 line-through dark:text-gray-400">
                           {"₹ "}199999
                         </span>
                       </p>
-                      <p className="max-w-md text-xl text-gray-700 dark:text-gray-400">
+                      <p className="text-xl text-gray-700 dark:text-gray-400">
                         {product.description}
                       </p>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-4">
                       <button
-                        onClick={() =>
-                          addToCart(
-                            product.id,
-                            product.price,
-                            product.title,
-                            product.description,
-                            product.thumbnail
-                          )
-                        }
+                        onClick={handleCart}
                         className="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700"
                       >
                         Add to cart

@@ -5,7 +5,7 @@ function Practice({ setdata }) {
   const { items, loading } = useProductContext();
   const [category, setCategory] = useState("");
   const [sortType, setSortType] = useState("");
-  // const [isFilterOpen, setisFilterOpen] = useState(false);
+
 
   const filterByCategoryAndPrice = () => {
     let filteredItems = [...items];
@@ -20,6 +20,9 @@ function Practice({ setdata }) {
       filteredItems.sort((a, b) => b.price - a.price);
     }
 
+    console.log(filteredItems);
+    console.log(rating);
+
     setdata(filteredItems);
   };
 
@@ -29,6 +32,7 @@ function Practice({ setdata }) {
         <div className="p-6">
           <h2 className="text-stone-700 text-xl font-bold">Apply filters</h2>
           <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {/* Category Filter */}
             <div className="flex flex-col">
               <label
                 htmlFor="status"
@@ -53,6 +57,7 @@ function Practice({ setdata }) {
                 )}
               </select>
             </div>
+            {/* Price wise */}
             <div className="flex flex-col">
               <label
                 htmlFor="status"
@@ -72,6 +77,7 @@ function Practice({ setdata }) {
                 <option value="highToLow">High to Low</option>
               </select>
             </div>
+
           </div>
 
           <div className="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
@@ -83,9 +89,8 @@ function Practice({ setdata }) {
             </button>
             <button
               onClick={filterByCategoryAndPrice}
-              className={`active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90 ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`active:scale-95 rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none focus:ring hover:opacity-90 ${loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               disabled={loading}
             >
               {loading ? "Searching..." : "Search"}

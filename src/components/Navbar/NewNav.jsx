@@ -1,15 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { RiMenu3Line } from "react-icons/ri";
 import logo from "../../assets/E-Cart.webp";
 import searchlogo from "../../assets/search-26277.webp";
-import DataContext from "../../context/DataContext";
+import { useSelector } from "react-redux";
 
 const NewNav = () => {
   const [menu, setMenu] = useState(false);
   const [searchTerm, setsearchTerm] = useState("");
-  const context = useContext(DataContext);
 
   const navigate = useNavigate();
 
@@ -18,6 +17,8 @@ const NewNav = () => {
     navigate(`/search/${searchTerm}`);
     setsearchTerm("");
   };
+
+  const cartItems = useSelector((state) => state.cart.items)
 
   return (
     <nav className="z-0 relative" id="navbar">
@@ -99,8 +100,8 @@ const NewNav = () => {
                 className=" text-slate-200 relative border border-slate-400 p-1"
               >
                 <FaShoppingCart size={25} className=" cursor-pointer" />
-                <div className=" absolute top-[-8px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
-                  {context.cart.length}
+                <div className="border absolute top-[-8px] right-[-11px] bg-red-600 w-[22px] h-[20px] rounded-full text-white text-sm grid place-items-center">
+                  {cartItems.length}
                 </div>
               </Link>
             </div>

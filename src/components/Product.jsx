@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import DataContext from "../context/DataContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { addToCart } from "../Redux/fetures/cartSlice";
+import Star from "./star";
 
 const Product = ({
   thumbnail,
@@ -11,20 +13,26 @@ const Product = ({
   price,
   title,
   discountPercentage,
+  rating,
+  stock
 }) => {
-  const context = useContext(DataContext);
-  const addToCart = (id, price, title, description, thumbnail) => {
-    const obj = {
-      id,
-      price,
-      title,
-      description,
-      thumbnail,
-    };
-    context.setcart([...context.cart, obj]);
+  const dispatch = useDispatch()
+
+  const formatNumberWithCommas = (number) => {
+    return number.toLocaleString('en-IN', {
+      maximumFractionDigits: 0,
+      style: 'currency',
+      currency: 'INR',
+    });
+  };
+
+  const priceINR = formatNumberWithCommas(price);
+
+  const handleCart = () => {
+    dispatch(addToCart({ id, price, title, description, thumbnail }))
     toast.success("Item added on cart", {
       position: "top-right",
-      autoClose: 1200,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -32,16 +40,16 @@ const Product = ({
       progress: undefined,
       theme: "dark",
     });
-  };
+  }
 
   return (
     <>
       <div
         key={id}
-        className="grid-item group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md "
+        className="grid-item group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-200 bg-indigo-50 shadow-md"
       >
         <Link
-          className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+          className="relative m-0 flex h-60 overflow-hidden rounded-lg"
           to={`/product/${id}`}
         >
           <img
@@ -55,26 +63,26 @@ const Product = ({
           </span>
         </Link>
         <div className="mt-4 px-5 pb-5">
-          <Link href="#">
+          <div className="flex items-center justify-between">
             <h5 className="text-xl tracking-tight text-slate-900">{title}</h5>
-          </Link>
+            <p className="bg-blue-400 rounded-2xl px-1">{stock}</p>
+          </div>
+
+
           <div className="mt-2 mb-5 flex items-center justify-between">
             <p>
               <span className="text-3xl font-bold text-slate-900">
-                {"₹ "}
-                {(price * 75.5).toFixed(0)}
+                {priceINR}
               </span>
             </p>
+            <div className="">
+              <Star stars={rating} />
+            </div>
           </div>
           <div className="mt-4 flex flex-row justify-between gap-2">
-            <button className="block w-full rounded bg-blue-500 text-white p-2 text-sm font-medium transition hover:scale-105">
-              ₹ {(price * 75.5).toFixed(0)}
-            </button>
             <button
-              onClick={() =>
-                addToCart(id, price, title, description, thumbnail)
-              }
-              className="block w-full rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
+              onClick={handleCart}
+              className="block w-full rounded-2xl bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
             >
               Buy Now
             </button>

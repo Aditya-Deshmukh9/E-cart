@@ -1,24 +1,30 @@
-import React, { useContext } from "react";
-import DataContext from "../context/DataContext";
+import React from "react";;
 import CartItems from "../components/CartItems";
 import { Link } from "react-router-dom";
 import CoursolProduct from "./CoursolProduct";
+import { useSelector } from "react-redux";
+import { getTotal } from "../Redux/fetures/cartSlice";
 
 function Cart() {
-  const context = useContext(DataContext);
-  const cartProduct = context.cart;
+  const cartItems = useSelector((state) => state.cart.items)
+  const total = useSelector(getTotal);
 
-  const getTotal = () => {
-    let total = 0;
-    cartProduct.forEach((item) => (total = total + item.price));
-    return total;
+  const formatNumberWithCommas = (number) => {
+    return number.toLocaleString('en-IN', {
+      maximumFractionDigits: 2,
+      style: 'currency',
+      currency: 'INR',
+    });
   };
+
+  const totalprice = formatNumberWithCommas(total);
+
 
   return (
     <>
       <section>
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          {cartProduct.length === 0 ? (
+          {cartItems.length === 0 ? (
             <div className="flex flex-col items-center justify-center">
               <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
                 Your Cart is Empty
@@ -31,17 +37,16 @@ function Cart() {
               </Link>
             </div>
           ) : (
-            // cart is Filed
             <div className="mx-auto max-w-3xl">
               <header className="text-center">
                 <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                  Your Cart
+                  Your Cart({cartItems.length})
                 </h1>
               </header>
 
               <div className="mt-8">
                 <ul className="space-y-4">
-                  {cartProduct.map((item, index) => (
+                  {cartItems.map((item, index) => (
                     <CartItems key={index} {...item} />
                   ))}
                 </ul>
@@ -52,15 +57,14 @@ function Cart() {
                       <div className="flex justify-between !text-base font-medium">
                         <dt>Total</dt>
                         <dd>
-                          {"₹ "}
-                          {getTotal()}.00
+                          {totalprice}
                         </dd>
                       </div>
                     </dl>
 
                     <div className="flex justify-end">
                       <Link
-                        to={"/auth/checkout"}
+
                         className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                       >
                         Checkout
