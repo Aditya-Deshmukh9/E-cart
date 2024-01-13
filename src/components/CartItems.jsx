@@ -3,8 +3,32 @@ import DataContext from "../context/DataContext";
 import { MdOutlineClear } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-function CartItems({ id, thumbnail, title, price, description }) {
+function CartItems({ id, thumbnail, title, price, quantity }) {
   const context = useContext(DataContext);
+
+  const increaseQuantity = () => {
+    context.setcart((prevCart) => {
+      const updatedCart = prevCart.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+      return updatedCart;
+    });
+  };
+
+  const decreaseQuantity = () => {
+    context.setcart((prevCart) => {
+      const updatedCart = prevCart.map((item) => {
+        if (item.id === id && item.quantity > 1) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+      return updatedCart;
+    });
+  };
 
   const removeFromCart = (id) => {
     context.setcart((prevCart) => {
@@ -22,7 +46,7 @@ function CartItems({ id, thumbnail, title, price, description }) {
 
   return (
     <>
-      <li className="flex items-center gap-4">
+      <li className="flex items-center gap-4 border border-black pr-3">
         <img
           src={thumbnail}
           alt=""
@@ -44,15 +68,20 @@ function CartItems({ id, thumbnail, title, price, description }) {
           </dl>
         </Link>
 
-        <div className="flex flex-1 items-center justify-end gap-2">
-          <h2 className="bg-slate-200 p-1 inline-block">Qty 1</h2>
+        <div className="flex flex-1 items-center justify-end">
+          <div className="border text-black">
+            <button className="px-2 font-bold text-xl hover:text-red-500 hover:scale-75 bg-slate-400" onClick={increaseQuantity}>+</button>
+
+            <h2 className="bg-slate-200 p-1 inline-block">Qty {quantity}</h2>
+            <button className="px-2 font-bold text-xl hover:text-red-500 hover:scale-75 bg-slate-400" onClick={decreaseQuantity}>-</button>
+          </div>
 
           <button
             onClick={() => removeFromCart(id)}
-            className="text-gray-600 transition hover:text-red-600"
+            className="text-gray-600 transition hover:text-red-600 "
           >
             <span className="sr-only">Remove item</span>
-            <MdOutlineClear className="h-4 w-4" />
+            <MdOutlineClear className="h-5 w-5 hover:scale-90" />
           </button>
         </div>
       </li>

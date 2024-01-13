@@ -31,7 +31,7 @@ export const ProductProvider = ({ children }) => {
           setItems(decryptedData);
           setLoading(false);
         } else {
-          const response = await axios.get(`${baseurl}/products?limit=20`);
+          const response = await axios.get(`${baseurl}/products?limit=100`);
           const fetchedData = response.data.products;
           setItems(fetchedData);
 
