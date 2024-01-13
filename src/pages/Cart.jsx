@@ -8,6 +8,7 @@ function Cart() {
   const context = useContext(DataContext);
   const cartProduct = context.cart;
 
+
   const getTotal = () => {
     let total = 0;
     cartProduct.forEach((item) => (total = total + item.price));

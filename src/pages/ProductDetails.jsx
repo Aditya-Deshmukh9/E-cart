@@ -17,17 +17,36 @@ function ProductDetails() {
   const context = useContext(DataContext);
 
   const addToCart = (id, price, title, description, thumbnail) => {
-    const obj = {
-      id,
-      price,
-      title,
-      description,
-      thumbnail,
-    };
-    context.setcart([...context.cart, obj]);
-    toast.success("Item added on cart", {
+    const existingProductIndex = context.cart.findIndex(item => item.id === id);
+
+    if (existingProductIndex !== -1) {
+      // Product already exists in the cart
+      const updatedCart = context.cart.map((item, index) => {
+        if (index === existingProductIndex) {
+          // Increase the quantity if the product already exists
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      });
+
+      context.setcart(updatedCart);
+    } else {
+      // Product does not exist in the cart, add a new item
+      const obj = {
+        id,
+        price,
+        title,
+        description,
+        thumbnail,
+        quantity: 1, // Initial nty is 1
+      };
+
+      context.setcart([...context.cart, obj]);
+    }
+
+    toast.success("Item added to cart", {
       position: "top-right",
-      autoClose: 1500,
+      autoClose: 1200,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
