@@ -15,7 +15,9 @@ const NewNav = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate(`/search/${searchTerm}`);
+    if (!searchTerm) {
+      navigate(`/search/${searchTerm}`);
+    }
     setsearchTerm("");
   };
 

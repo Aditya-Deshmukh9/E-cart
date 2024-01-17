@@ -3,7 +3,7 @@ import { useProductContext } from "../context/ProductContext";
 import Loading from "../components/Loading";
 import Products from "../components/Products";
 import Error from "./Error";
-import NavSecond from "../components/Navbar/NavSecond";
+import Filters from "../components/Filters";
 
 function ProductPage() {
   const { items, loading, error } = useProductContext();
@@ -14,8 +14,8 @@ function ProductPage() {
   }, [items]);
 
   return (
-    <>
-      <NavSecond setdata={setdata} />
+    <div className="h-full w-full">
+      <Filters setdata={setdata} />
       {loading ? (
         <Loading />
       ) : error ? (
@@ -25,7 +25,7 @@ function ProductPage() {
           <Products items={data} />
         </>
       )}
-    </>
+    </div>
   );
 }
 

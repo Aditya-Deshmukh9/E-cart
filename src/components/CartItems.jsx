@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import DataContext from "../context/DataContext";
 import { MdOutlineClear } from "react-icons/md";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function CartItems({ id, thumbnail, title, price, quantity }) {
   const context = useContext(DataContext);
@@ -16,6 +17,7 @@ function CartItems({ id, thumbnail, title, price, quantity }) {
       });
       return updatedCart;
     });
+    toast.success("Item quantity increase");
   };
 
   const decreaseQuantity = () => {
@@ -28,6 +30,7 @@ function CartItems({ id, thumbnail, title, price, quantity }) {
       });
       return updatedCart;
     });
+    toast.success("Item quantity decrease");
   };
 
   const removeFromCart = (id) => {
@@ -70,10 +73,20 @@ function CartItems({ id, thumbnail, title, price, quantity }) {
 
         <div className="flex flex-1 items-center justify-end">
           <div className="border text-black">
-            <button className="px-2 font-bold text-xl hover:text-red-500 hover:scale-75 bg-slate-400" onClick={increaseQuantity}>+</button>
+            <button
+              className="px-2 font-bold text-xl hover:text-red-500 hover:scale-75 bg-slate-400"
+              onClick={increaseQuantity}
+            >
+              +
+            </button>
 
             <h2 className="bg-slate-200 p-1 inline-block">Qty {quantity}</h2>
-            <button className="px-2 font-bold text-xl hover:text-red-500 hover:scale-75 bg-slate-400" onClick={decreaseQuantity}>-</button>
+            <button
+              className="px-2 font-bold text-xl hover:text-red-500 hover:scale-75 bg-slate-400"
+              onClick={decreaseQuantity}
+            >
+              -
+            </button>
           </div>
 
           <button
@@ -81,7 +94,10 @@ function CartItems({ id, thumbnail, title, price, quantity }) {
             className="text-gray-600 transition hover:text-red-600 "
           >
             <span className="sr-only">Remove item</span>
-            <MdOutlineClear className="h-5 w-5 hover:scale-90" />
+            <MdOutlineClear
+              onClick={() => toast.success(`${title} remove from cart`)}
+              className="h-5 w-5 hover:scale-90"
+            />
           </button>
         </div>
       </li>

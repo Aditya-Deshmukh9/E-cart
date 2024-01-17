@@ -4,30 +4,20 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import SearchItem from "./pages/SearchItem";
-import { ToastContainer } from "react-toastify";
 import Checkout from "./pages/Checkout";
 import Loading from "./components/Loading";
 import Error from "./pages/Error";
-import NewNav from "./components/Navbar/NewNav";
+import Navbar from "./components/Navbar/Navbar";
 import ProductPage from "./pages/ProductPage";
 import About from "./pages/About";
 import YorComponent from "./pages/YorComponent";
+import { Toaster } from "react-hot-toast";
+import Footer from "./pages/Footer";
+
 function App() {
   return (
     <Router>
-      <ToastContainer
-        position="top-right"
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-      <NewNav />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
@@ -40,6 +30,8 @@ function App() {
         <Route path="/loading" element={<Loading />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
+      <Toaster />
     </Router>
   );
 }

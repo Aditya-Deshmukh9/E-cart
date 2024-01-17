@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import DataContext from "../context/DataContext";
 import CartItems from "../components/CartItems";
 import { Link } from "react-router-dom";
@@ -8,12 +8,25 @@ function Cart() {
   const context = useContext(DataContext);
   const cartProduct = context.cart;
 
-
   const getTotal = () => {
     let total = 0;
     cartProduct.forEach((item) => (total = total + item.price));
     return total;
   };
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
+    }
+
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
 
   return (
     <>
@@ -61,7 +74,8 @@ function Cart() {
 
                     <div className="flex justify-end">
                       <Link
-                        to={"/auth/checkout"}
+                        action="/api/create-checkout-session"
+                        method="POST"
                         className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                       >
                         Checkout
