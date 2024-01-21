@@ -11,7 +11,6 @@ function Home() {
   const { items, loading, error } = useProductContext();
   const [data, setdata] = useState([...items]);
 
-
   useEffect(() => {
     setdata([...items]);
   }, [items]);

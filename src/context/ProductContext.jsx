@@ -38,7 +38,7 @@ export const ProductProvider = ({ children }) => {
             localStorage.removeItem("token");
           }
         } else {
-          const response = await axios.get(`${baseurl}/products?limit=100`);
+          const response = await axios.get(`${baseurl}/products?limit=30`);
           const fetchedData = response.data.products;
 
           const encryptedDataToCache = encryptData(fetchedData);

@@ -6,11 +6,9 @@ import DataContextProvider from "./context//DataContextProvider.jsx";
 import { ProductProvider } from "./context/ProductContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ProductProvider>
-      <DataContextProvider>
-        <App />
-      </DataContextProvider>
-    </ProductProvider>
-  </React.StrictMode>
+  <ProductProvider>
+    <DataContextProvider>
+      <App />
+    </DataContextProvider>
+  </ProductProvider>
 );

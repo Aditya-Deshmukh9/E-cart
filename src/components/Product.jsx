@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import DataContext from "../context/DataContext";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import toast from "react-hot-toast";
+import { FaCartPlus } from "react-icons/fa";
 
 const Product = ({
   thumbnail,
@@ -15,7 +15,9 @@ const Product = ({
   const context = useContext(DataContext);
 
   const addToCart = (id, price, title, description, thumbnail) => {
-    const existingProductIndex = context.cart.findIndex(item => item.id === id);
+    const existingProductIndex = context.cart.findIndex(
+      (item) => item.id === id
+    );
 
     if (existingProductIndex !== -1) {
       // Product already exists in the cart
@@ -41,19 +43,8 @@ const Product = ({
 
       context.setcart([...context.cart, obj]);
     }
-
-    toast.success("Item added to cart", {
-      position: "top-right",
-      autoClose: 1200,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    toast.success(`${title} added to cart`);
   };
-
 
   return (
     <>
@@ -71,7 +62,7 @@ const Product = ({
             alt="product image"
           />
 
-          <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+          <span className="absolute top-0 left-0 m-2 rounded-full bg-yellow-300 px-2 text-center text-sm font-medium text-slate-600">
             {discountPercentage.toFixed()}% OFF
           </span>
         </Link>
@@ -97,7 +88,7 @@ const Product = ({
               }
               className="block w-full rounded bg-yellow-400 p-2 text-sm font-medium transition hover:scale-105"
             >
-              Buy Now
+              Buy Now <FaCartPlus className="inline-block mb-1" />
             </button>
           </div>
         </div>

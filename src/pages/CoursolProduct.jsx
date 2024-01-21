@@ -57,7 +57,7 @@ function CoursolProduct() {
           LAPTOPS 50% OFF
         </h1>
       </div>
-      <div className="mt-2">
+      <div className="mt-2 py-6">
         <Slider {...settings}>
           {items.map((item, index) => {
             if (item.category === "laptops") {
